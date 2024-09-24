@@ -380,3 +380,82 @@ false
 
 This implementation correctly checks if one string appears at the end of the other, ignoring case differences.
 
+### **Question:**
+
+Write a function that returns `true` if the given string contains an appearance of "xyz" where "xyz" is not directly preceded by a period (.). 
+
+#### **Examples:**
+
+- `xyzThere("abcxyz")` → `true`
+- `xyzThere("abc.xyz")` → `false`
+- `xyzThere("xyz.abc")` → `true`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to check for occurrences of "xyz" in the string.
+   - The condition is that "xyz" should not be preceded directly by a period.
+
+2. **Steps:**
+   - Loop through the string to find occurrences of "xyz".
+   - For each occurrence of "xyz", check if the character before it is a period (and handle the case when "xyz" is at the start of the string).
+   - Return `true` if a valid occurrence is found; otherwise, return `false`.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string, as we might need to scan through the entire string.
+
+### **Code:**
+
+```java
+public class XyzThere {
+
+    // Method that returns true if "xyz" appears not preceded by a period
+    public static boolean xyzThere(String str) {
+        // Loop through the string, checking for "xyz"
+        for (int i = 0; i < str.length() - 2; i++) {
+            // Check if current substring is "xyz"
+            if (str.substring(i, i + 3).equals("xyz")) {
+                // Check if it's either at the start or not preceded by a period
+                if (i == 0 || str.charAt(i - 1) != '.') {
+                    return true; // Valid occurrence found
+                }
+            }
+        }
+        return false; // No valid occurrence found
+    }
+
+    // Main method to test the xyzThere method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(xyzThere("abcxyz"));      // Output: true
+        System.out.println(xyzThere("abc.xyz"));     // Output: false
+        System.out.println(xyzThere("xyz.abc"));     // Output: true
+        System.out.println(xyzThere("xyz"));         // Output: true
+        System.out.println(xyzThere(".xyz"));        // Output: false
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `xyzThere(String str)`**:
+  - The method iterates through the string, checking every substring of length 3 to see if it matches "xyz".
+  - If a match is found, it checks if the character before the match is a period or if the match is at the start of the string (index 0).
+  - If the conditions are satisfied, the method returns `true`.
+  - If no valid occurrences are found after the loop, the method returns `false`.
+
+- **Main Method**:
+  - The main method tests the `xyzThere` method with various input strings and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+true
+false
+true
+true
+false
+``` 
+
+This implementation correctly checks for the presence of "xyz" in the string under the specified conditions.
+
