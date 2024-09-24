@@ -232,3 +232,79 @@ true
 false
 true
 ```
+### **Question:**
+
+Write a function that returns the number of times the substring "code" appears in the given string, where any letter can be accepted in place of the letter 'd'.
+
+#### **Examples:**
+
+- `countCode("aaacodebbb")` → `1`
+- `countCode("codexxcode")` → `2`
+- `countCode("cozexxcope")` → `2`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to find occurrences of "co_e", where `_` can be any character.
+   - For each substring that matches "co_e", we should increment our count.
+
+2. **Steps:**
+   - Initialize a counter to zero.
+   - Loop through the string and check each substring of length 4.
+   - If the substring starts with "co", ends with "e", and has any character in between, increment the counter.
+   - Return the total count after checking all possible substrings.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string. We iterate through the string once.
+
+### **Code:**
+
+```java
+public class CountCode {
+
+    // Method that returns the number of times "code" appears with any letter for 'd'
+    public static int countCode(String str) {
+        int count = 0; // Initialize counter
+        
+        // Loop through the string up to the length - 3 to avoid out-of-bounds
+        for (int i = 0; i < str.length() - 3; i++) {
+            // Check if substring matches "co_e"
+            if (str.charAt(i) == 'c' && str.charAt(i + 1) == 'o' && str.charAt(i + 3) == 'e') {
+                count++; // Increment count if match found
+            }
+        }
+        
+        return count; // Return the final count
+    }
+
+    // Main method to test the countCode method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(countCode("aaacodebbb"));  // Output: 1
+        System.out.println(countCode("codexxcode"));   // Output: 2
+        System.out.println(countCode("cozexxcope"));   // Output: 2
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `countCode(String str)`**:
+  - We initialize a counter `count` to keep track of occurrences.
+  - A loop iterates through the string up to `str.length() - 3` to avoid going out of bounds when checking substrings of length 4.
+  - Inside the loop, we check if the substring starts with 'c', has 'o' as the second character, and ends with 'e', while allowing any character in the third position. 
+  - If the condition is met, we increment the `count`.
+  - Finally, the function returns the total count of occurrences.
+
+- **Main Method**:
+  - The main method tests the `countCode` method with various input strings and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+1
+2
+2
+``` 
+
+This implementation accurately counts occurrences of the substring "code" with any character in place of 'd'.
