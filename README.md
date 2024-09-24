@@ -150,3 +150,85 @@ For the given test cases:
 2
 2
 ```
+
+### **Question:**
+
+Write a function that returns `true` if the string "cat" and "dog" appear the same number of times in the given string. The function should be case-sensitive, meaning only lowercase "cat" and "dog" are considered.
+
+#### **Examples:**
+
+- `catDog("catdog")` → `true`
+- `catDog("catcat")` → `false`
+- `catDog("1cat1cadodog")` → `true`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to count how many times the substrings "cat" and "dog" appear in the input string.
+   - If the counts for both substrings are equal, we return `true`. Otherwise, return `false`.
+
+2. **Steps:**
+   - Initialize two counters: one for "cat" and one for "dog".
+   - Use a loop to go through the string, checking for occurrences of "cat" and "dog".
+   - Increment the respective counter when either substring is found.
+   - After looping through the string, compare the two counters.
+   - Return `true` if the counts are equal, otherwise return `false`.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string. We traverse the string once, checking for both substrings.
+
+### **Code:**
+
+```java
+public class CatDog {
+
+    // Method that returns true if "cat" and "dog" appear the same number of times
+    public static boolean catDog(String str) {
+        int catCount = 0; // Counter for "cat"
+        int dogCount = 0; // Counter for "dog"
+        
+        // Loop through the string, checking for occurrences of "cat" and "dog"
+        for (int i = 0; i < str.length() - 2; i++) {
+            // Check for "cat"
+            if (str.substring(i, i + 3).equals("cat")) {
+                catCount++;
+            }
+            // Check for "dog"
+            if (str.substring(i, i + 3).equals("dog")) {
+                dogCount++;
+            }
+        }
+        
+        // Return true if the counts of "cat" and "dog" are equal, else false
+        return catCount == dogCount;
+    }
+
+    // Main method to test the catDog method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(catDog("catdog"));         // Output: true
+        System.out.println(catDog("catcat"));         // Output: false
+        System.out.println(catDog("1cat1cadodog"));   // Output: true
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `catDog(String str)`**:
+  - We initialize two counters: `catCount` to count occurrences of "cat" and `dogCount` to count occurrences of "dog".
+  - A loop iterates through the string, using `substring(i, i + 3)` to check for "cat" and "dog".
+  - Each time we find "cat", we increment `catCount`, and for "dog", we increment `dogCount`.
+  - The loop runs until `i` is less than `str.length() - 2` to avoid going out of bounds for the 3-character check.
+  - Finally, the function returns `true` if `catCount` equals `dogCount`, otherwise it returns `false`.
+
+- **Main Method**:
+  - The main method tests the `catDog` method with different input strings and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+true
+false
+true
+```
