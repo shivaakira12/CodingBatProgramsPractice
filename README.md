@@ -76,3 +76,77 @@ TThhee
 AAAAbbbb
 HHii--TThheerree
 ```
+### **Question:**
+
+Write a function that takes a string as input and returns the number of times the substring "hi" appears within the string. The search should be case-sensitive, meaning only lowercase "hi" will be counted.
+
+#### **Examples:**
+
+- `countHi("abc hi ho")` → `1`
+- `countHi("ABChi hi")` → `2`
+- `countHi("hihi")` → `2`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to scan the string and count every occurrence of the exact substring "hi".
+   - The function should be case-sensitive, so only the lowercase "hi" will be considered.
+
+2. **Steps:**
+   - Initialize a counter to zero.
+   - Use a loop or string method to check for occurrences of the substring "hi".
+   - Increment the counter every time the substring "hi" is found.
+   - Return the total count.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string. We traverse the string once and count how many times "hi" appears.
+
+### **Code:**
+
+```java
+public class CountHi {
+
+    // Method that returns the number of times "hi" appears in the string
+    public static int countHi(String str) {
+        int count = 0; // Initialize counter for occurrences of "hi"
+        
+        // Loop through the string, checking for occurrences of "hi"
+        for (int i = 0; i < str.length() - 1; i++) {
+            // Check if the current and next character form "hi"
+            if (str.substring(i, i + 2).equals("hi")) {
+                count++; // Increment the counter if "hi" is found
+            }
+        }
+        
+        return count; // Return the final count
+    }
+
+    // Main method to test the countHi method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(countHi("abc hi ho"));  // Output: 1
+        System.out.println(countHi("ABChi hi"));   // Output: 2
+        System.out.println(countHi("hihi"));       // Output: 2
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `countHi(String str)`**:
+  - We initialize a counter `count` to track the number of times the substring "hi" appears.
+  - A loop iterates through the string, checking every pair of consecutive characters using `substring(i, i + 2)`.
+  - Whenever we find "hi", we increment the `count`.
+  - The loop runs until `i` is less than `str.length() - 1` to avoid going out of bounds.
+  - The function returns the total count.
+
+- **Main Method**:
+  - The main method tests the `countHi` method with various input strings to ensure correctness.
+
+### **Output:**
+For the given test cases:
+```
+1
+2
+2
+```
