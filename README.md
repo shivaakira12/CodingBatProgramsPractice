@@ -308,3 +308,75 @@ For the given test cases:
 ``` 
 
 This implementation accurately counts occurrences of the substring "code" with any character in place of 'd'.
+
+### **Question:**
+
+Write a function that takes two strings as input and returns `true` if either of the strings appears at the very end of the other string, ignoring case differences.
+
+#### **Examples:**
+
+- `endOther("Hiabc", "abc")` → `true`
+- `endOther("AbC", "HiaBc")` → `true`
+- `endOther("abc", "abXabc")` → `true`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to check if one string appears at the end of the other string.
+   - The comparison should be case-insensitive.
+
+2. **Steps:**
+   - Convert both strings to lowercase to ignore case differences.
+   - Use the `endsWith` method (or a similar approach) to check if one string ends with the other.
+   - Return `true` if either string ends with the other; otherwise, return `false`.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the longer string. This is because we may need to compare characters from the end of each string.
+
+### **Code:**
+
+```java
+public class EndOther {
+
+    // Method that returns true if either string appears at the end of the other
+    public static boolean endOther(String str1, String str2) {
+        // Convert both strings to lowercase
+        String lowerStr1 = str1.toLowerCase();
+        String lowerStr2 = str2.toLowerCase();
+        
+        // Check if str1 ends with str2 or str2 ends with str1
+        return lowerStr1.endsWith(lowerStr2) || lowerStr2.endsWith(lowerStr1);
+    }
+
+    // Main method to test the endOther method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(endOther("Hiabc", "abc"));     // Output: true
+        System.out.println(endOther("AbC", "HiaBc"));     // Output: true
+        System.out.println(endOther("abc", "abXabc"));    // Output: true
+        System.out.println(endOther("Hello", "World"));   // Output: false
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `endOther(String str1, String str2)`**:
+  - The method first converts both input strings to lowercase using `toLowerCase()` to ensure the comparison is case-insensitive.
+  - It then checks if `lowerStr1` ends with `lowerStr2` using `endsWith()`, or if `lowerStr2` ends with `lowerStr1`.
+  - The method returns `true` if either condition is satisfied; otherwise, it returns `false`.
+
+- **Main Method**:
+  - The main method tests the `endOther` method with various input strings and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+true
+true
+true
+false
+``` 
+
+This implementation correctly checks if one string appears at the end of the other, ignoring case differences.
+
