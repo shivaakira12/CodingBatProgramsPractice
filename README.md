@@ -1,7 +1,7 @@
 
 
 ---
-# **String** Medium String problems -- 1 loop
+# Medium String problems -- 1 loop
 ### **Question:**
 
 Write a function that takes a string as input and returns a new string where each character from the original string appears twice consecutively.
