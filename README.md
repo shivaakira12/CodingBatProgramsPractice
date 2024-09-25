@@ -1,4 +1,4 @@
-Here is the full explanation along with the question and code, formatted as requested:
+
 
 ---
 
@@ -458,4 +458,81 @@ false
 ``` 
 
 This implementation correctly checks for the presence of "xyz" in the string under the specified conditions.
+
+
+### **Question:**
+
+Write a function that returns `true` if the given string contains a "bob" pattern, where the middle 'o' can be any character.
+
+#### **Examples:**
+
+- `bobThere("abcbob")` → `true`
+- `bobThere("b9b")` → `true`
+- `bobThere("bac")` → `false`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - The pattern we are looking for is "b_b", where `_` can be any character.
+   - We need to find occurrences of this pattern in the string and return `true` if it exists.
+
+2. **Steps:**
+   - Loop through the string, checking every substring of length 3.
+   - If the substring starts with 'b', ends with 'b', and has any character in between, return `true`.
+   - If no such pattern is found, return `false`.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string, since we scan through the string once.
+
+### **Code:**
+
+```java
+public class BobThere {
+
+    // Method that returns true if the pattern "b_b" appears in the string
+    public static boolean bobThere(String str) {
+        // Loop through the string, checking for "b_b" pattern
+        for (int i = 0; i < str.length() - 2; i++) {
+            // Check if the substring matches the pattern "b_b"
+            if (str.charAt(i) == 'b' && str.charAt(i + 2) == 'b') {
+                return true; // Valid "bob" pattern found
+            }
+        }
+        return false; // No valid "bob" pattern found
+    }
+
+    // Main method to test the bobThere method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(bobThere("abcbob"));   // Output: true
+        System.out.println(bobThere("b9b"));      // Output: true
+        System.out.println(bobThere("bac"));      // Output: false
+        System.out.println(bobThere("bbbbb"));    // Output: true
+        System.out.println(bobThere("bxb"));      // Output: true
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `bobThere(String str)`**:
+  - The method loops through the string, checking every substring of length 3.
+  - It looks for the pattern where the first and third characters are both 'b' (`b_b`).
+  - If such a pattern is found, the method immediately returns `true`.
+  - If no such pattern is found, the method returns `false`.
+
+- **Main Method**:
+  - The main method tests the `bobThere` method with different input strings and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+true
+true
+false
+true
+true
+``` 
+
+This implementation correctly identifies the "bob" pattern, where the middle character can be any character.
 
