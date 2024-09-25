@@ -536,3 +536,90 @@ true
 
 This implementation correctly identifies the "bob" pattern, where the middle character can be any character.
 
+### **Question:**
+
+Write a function that returns `true` if the given string is "xy-balanced." A string is considered **xy-balanced** if, for every 'x' character in the string, there exists a 'y' character that comes **after** it. One 'y' can balance multiple 'x's.
+
+#### **Examples:**
+
+- `xyBalance("aaxbby")` → `true`
+- `xyBalance("aaxbb")` → `false`
+- `xyBalance("yaaxbb")` → `false`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - We need to check if all occurrences of 'x' in the string are followed by a 'y'.
+   - It doesn’t matter where the 'y' is as long as it comes **after** the 'x'.
+   - If there is an 'x' that has no 'y' after it, the string is not xy-balanced.
+
+2. **Steps:**
+   - Loop through the string from the **end** to the **start**.
+   - Keep track of whether a 'y' has been seen.
+   - If an 'x' is found, check if it has already been balanced by a 'y'.
+   - If all 'x's are balanced, return `true`; otherwise, return `false`.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n)**, where **n** is the length of the input string, as we traverse the string once.
+
+### **Code:**
+
+```java
+public class XyBalance {
+
+    // Method that checks if a string is xy-balanced
+    public static boolean xyBalance(String str) {
+        boolean yFound = false; // To keep track if 'y' has been found
+
+        // Traverse the string from end to start
+        for (int i = str.length() - 1; i >= 0; i--) {
+            // If a 'y' is found, mark yFound as true
+            if (str.charAt(i) == 'y') {
+                yFound = true;
+            }
+            // If an 'x' is found and no 'y' has been found after it, return false
+            if (str.charAt(i) == 'x' && !yFound) {
+                return false;
+            }
+        }
+        
+        return true; // Return true if all 'x's are balanced
+    }
+
+    // Main method to test the xyBalance method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(xyBalance("aaxbby"));    // Output: true
+        System.out.println(xyBalance("aaxbb"));     // Output: false
+        System.out.println(xyBalance("yaaxbb"));    // Output: false
+        System.out.println(xyBalance("x"));         // Output: false
+        System.out.println(xyBalance("xy"));        // Output: true
+        System.out.println(xyBalance("aaxxy"));     // Output: true
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `xyBalance(String str)`**:
+  - We use a boolean variable `yFound` to keep track of whether a 'y' character has been seen.
+  - We traverse the string **backwards** (from the last character to the first). This is important because we need to know if an 'x' has a 'y' after it.
+  - When we find a 'y', we set `yFound = true`, meaning any 'x' before it will be balanced.
+  - If we encounter an 'x' and `yFound` is still `false`, it means this 'x' does not have a 'y' after it, so we return `false`.
+  - If the loop finishes without finding any unbalanced 'x', we return `true`.
+
+- **Main Method**:
+  - The main method tests the `xyBalance` method with different strings to check the functionality.
+
+### **Output:**
+For the given test cases:
+```
+true
+false
+false
+false
+true
+true
+``` 
+
+This implementation correctly checks if a string is **xy-balanced**, ensuring that every 'x' has a corresponding 'y' after it in the string.
