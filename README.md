@@ -623,3 +623,92 @@ true
 ``` 
 
 This implementation correctly checks if a string is **xy-balanced**, ensuring that every 'x' has a corresponding 'y' after it in the string.
+
+### **Question:**
+
+Write a function that merges two strings by alternating their characters. The new string should be made by taking the first character of string `a`, followed by the first character of string `b`, the second character of string `a`, followed by the second character of string `b`, and so on. If one string is longer, append the remaining characters of the longer string at the end.
+
+#### **Examples:**
+
+- `mixString("abc", "xyz")` → `"axbycz"`
+- `mixString("Hi", "There")` → `"HTihere"`
+- `mixString("xxxx", "There")` → `"xTxhxexre"`
+
+### **Approach:**
+
+1. **Problem Breakdown:**
+   - The characters from both strings are merged in an alternating pattern.
+   - If one string runs out of characters, append the remaining characters of the longer string at the end.
+
+2. **Steps:**
+   - Use a loop to iterate through both strings simultaneously.
+   - At each step, append the current character from both strings to the result.
+   - If one string is longer, append the rest of its characters to the result after the loop.
+
+3. **Time Complexity:**
+   - The time complexity is **O(n + m)**, where **n** and **m** are the lengths of the two strings, since we process each character of both strings once.
+
+### **Code:**
+
+```java
+public class MixString {
+
+    // Method to merge two strings by alternating their characters
+    public static String mixString(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int minLength = Math.min(a.length(), b.length()); // Find the shorter string length
+
+        // Loop through the characters of both strings up to the length of the shorter one
+        for (int i = 0; i < minLength; i++) {
+            result.append(a.charAt(i)); // Append character from string a
+            result.append(b.charAt(i)); // Append character from string b
+        }
+
+        // Append the remaining characters from the longer string
+        if (a.length() > minLength) {
+            result.append(a.substring(minLength));
+        } else if (b.length() > minLength) {
+            result.append(b.substring(minLength));
+        }
+
+        return result.toString(); // Return the merged string
+    }
+
+    // Main method to test the mixString method
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(mixString("abc", "xyz"));   // Output: "axbycz"
+        System.out.println(mixString("Hi", "There"));  // Output: "HTihere"
+        System.out.println(mixString("xxxx", "There")); // Output: "xTxhxexre"
+        System.out.println(mixString("a", "bcdef"));    // Output: "abcdef"
+        System.out.println(mixString("abc", "x"));      // Output: "axbc"
+    }
+}
+```
+
+### **Explanation of Code:**
+
+- **Method `mixString(String a, String b)`**:
+  - First, the shorter string length (`minLength`) is calculated using `Math.min()`.
+  - A loop iterates over the characters of both strings up to this minimum length, appending one character from each string in alternating order to the `StringBuilder`.
+  - After the loop, the remaining characters from the longer string (if any) are appended to the result using `substring(minLength)`.
+
+- **Main Method**:
+  - The main method tests the `mixString` method with various test cases and prints the results.
+
+### **Output:**
+For the given test cases:
+```
+axbycz
+HTihere
+xTxhxexre
+abcdef
+axbc
+```
+
+### **Edge Case Handling:**
+- **Different Lengths**: The solution handles cases where the two strings have different lengths by appending the remaining characters from the longer string at the end.
+- **Empty Strings**: If one or both strings are empty, the function returns the other string as expected.
+
+### **Conclusion:**
+This solution efficiently combines two strings by alternating their characters and handles cases where one string is longer than the other. It runs in linear time and handles edge cases like different lengths or empty strings correctly.
