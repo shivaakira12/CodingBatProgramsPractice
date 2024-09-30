@@ -206,7 +206,7 @@ public class MixString {
     }
 }
 ```
-## 1. RepeatSeparator Problem
+## Problem 7: RepeatSeparator Problem
 ### Question
 Given two strings, `word` and a separator `sep`, return a big string made of `count` occurrences of the `word`, separated by the `separator` string.
 | Input                            | Output                 |
@@ -233,7 +233,7 @@ public class RepeatSeparator {
 }
 ```
 ---
-## 2. PrefixAgain Problem
+## Problem 8: PrefixAgain Problem
 ### Question
 Given a string, consider the prefix string made of the first N chars of the string. Does that prefix string appear somewhere else in the string? Assume that the string is not empty and that N is in the range 1..str.length().
 | Input                            | Output                |
@@ -257,7 +257,7 @@ public class PrefixAgain {
 }
 ```
 ---
-## 3. XyzMiddle Problem
+## Problem 9: XyzMiddle Problem
 ### Question
 Given a string, does "xyz" appear in the middle of the string? To define middle, we'll say that the number of chars to the left and right of the "xyz" must differ by at most one.
 | Input                     | Output     |
@@ -290,7 +290,7 @@ public class XyzMiddle {
 }
 ```
 ---
-## 4. RepeatEnd Problem
+## Problem 10: RepeatEnd Problem
 ### Question
 Given a string and an int n, return a string made of n repetitions of the last n characters of the string. You may assume that n is between 0 and the length of the string, inclusive.
 | Input                         | Output       |
